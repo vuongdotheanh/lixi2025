@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhận Lì Xì Ngày Tết</title>
+    <link rel="stylesheet" href="hs.css">
+</head>
+<body>
+    <!-- Cảnh báo thông báo khi vào trang -->
+    <div id="musicWarning" class="popup">
+        <p>Chuẩn bị phát nhạc Tết nha! Bạn có muốn nghe nhạc không?</p>
+        <button id="okButton">OK</button>
+        <button id="dontPlayButton">Đừng Phát</button>
+    </div>
+
+    <!-- Nhạc nền tự động phát, nhưng sẽ chỉ phát khi người dùng chọn OK -->
+    <audio id="backgroundMusic" loop autoplay>
+        <source src="mp.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="container">
+        <h1 id="chucTET">Chúc Mừng Năm Mới!</h1>
+        <p id="namMoiText">Năm mới lì xì gặp nhiều may mắn, công việc thuận lợi, lì xì ngay nha</p>
+
+        <div class="icon-container">
+            <img id="icon" src="sticker-facebook.gif" alt="Icon vui nhộn">
+        </div>
+
+        <div class="buttons">
+            <button id="coButton">Có</button>
+            <button id="khongButton">Không</button>
+        </div>
+        
+        <p id="warningText" style="display: none; color: red; font-weight: bold;"></p>
+        <div id="popupWarning" class="popup" style="display: none;">
+            <img src="18-34-10-554_512 (1).gif" alt="Cảnh báo" class="warning-icon">
+            <p id="warningText">Năm mới phải lì xì mới may, sao lại không nhỉ?</p>
+        </div>
+    </div>
+
+    <script>
+        // Lưu trạng thái nhạc vào localStorage để tránh phát lại khi tải lại trang
+        window.addEventListener('load', function() {
+            const audio = document.getElementById('backgroundMusic');
+            
+            // Kiểm tra trạng thái nhạc trong localStorage
+            if (localStorage.getItem('musicStarted') === 'true') {
+                audio.play();
+            }
+        });
+
+        // Khi nhấn "OK", nhạc sẽ bắt đầu phát
+        document.getElementById('okButton').addEventListener('click', function() {
+            const audio = document.getElementById('backgroundMusic');
+            audio.play(); // Phát nhạc
+            localStorage.setItem('musicStarted', 'true'); // Lưu trạng thái đã phát nhạc
+            document.getElementById('musicWarning').style.display = 'none'; // Ẩn cảnh báo
+        });
+
+        // Khi nhấn "Đừng Phát", nhạc sẽ không phát
+        document.getElementById('dontPlayButton').addEventListener('click', function() {
+            localStorage.setItem('musicStarted', 'false'); // Lưu trạng thái không phát nhạc
+            document.getElementById('musicWarning').style.display = 'none'; // Ẩn cảnh báo
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>

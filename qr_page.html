@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhận Lì Xì Ngày Tết</title>
+    <link rel="stylesheet" href="qr.css">
+</head>
+<body>
+     <!-- Nhạc nền tự động phát -->
+     <audio id="backgroundMusic" loop autoplay>
+        <source src="mp.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    <div class="container">
+        <h1 id="chucTET">Nhận lì xì đến hết năm luôn nha!</h1>
+<p id="namMoiText">Tiền không quan trọng quan trọng là 500k</p>
+
+        <img id="icon" src="qraanhdong.gif" alt="Icon vui nhộn">
+        <img id="qrCode" src="1.jpg" alt="QR Code">
+    </div>
+
+    <script>
+        // Khi trang được tải, kiểm tra trạng thái nhạc
+        window.addEventListener('load', function() {
+            const audio = document.getElementById('backgroundMusic');
+
+            // Nếu nhạc đã được chơi ở trang trước, không cần phát lại
+            if (localStorage.getItem('musicStarted') === 'true') {
+                audio.play();
+            }
+        });
+    </script>
+</body>
+</html>
